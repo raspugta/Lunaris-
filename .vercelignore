@@ -1,0 +1,12 @@
+/.venv
+/data
+/core
+/backend
+/tests
+/scripts
+/configs
+/docs
+/frontend
+/requirements.txt
+/requirements-ml.txt
+/pytest.ini

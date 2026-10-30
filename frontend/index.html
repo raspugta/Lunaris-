@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LUNARIS Console</title>
+<link rel="stylesheet" href="/static/fonts.css">
+<link rel="stylesheet" href="/static/style.css">
+<script type="importmap">{"imports": {"three": "/static/vendor/three.module.min.js"}}</script>
+</head>
+<body>
+<header class="topbar">
+  <a class="home" href="/" title="Back to the LUNARIS home page">← Home</a>
+  <div class="brand">
+    <svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16 3a13 13 0 0 0 0 26a9 13 0 0 1 0-26z" fill="currentColor" opacity=".35"/><circle cx="20" cy="12" r="2.2" fill="none" stroke="currentColor"/><circle cx="12" cy="20" r="1.4" fill="none" stroke="currentColor"/></svg>
+    <div><div class="title">LUNARIS</div><div class="tagline">Lunar Uncharted Navigation, Autonomy &amp; Resource Intelligence System</div></div>
+  </div>
+  <div class="dataset-picker">
+    <select id="datasetSelect" aria-label="Dataset"></select>
+    <button id="loadBtn" class="primary">Load</button>
+    <button id="craterBtn" class="craterbtn" title="Browse the crater library">◎ Craters</button>
+    <span id="kindBadge" class="badge hidden"></span>
+  </div>
+  <button id="alvikBtn" class="alvikbtn" disabled title="Plan a route first">⬢ Send to Alvik</button>
+  <button id="simToggle" class="simbtn" disabled title="Load a dataset and plan a route first">
+    <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="4" y="8" width="16" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="7" cy="17.5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="17.5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M15 8V4h3" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+    Rover Simulation</button>
+  <div class="env" id="envInfo">connecting…</div>
+</header>
+
+<div id="banner" class="banner hidden"></div>
+
+<main class="layout">
+  <aside class="panel" id="sidePanel">
+    <nav class="steps" role="tablist">
+      <button data-tab="inspect" class="active">1 · Inspect</button>
+      <button data-tab="understand">2 · Understand</button>
+      <button data-tab="prioritise">3 · Prioritise</button>
+      <button data-tab="navigate">4 · Navigate</button>
+      <button data-tab="report">5 · Report</button>
+      <button data-tab="simulate">6 · Simulate</button>
+    </nav>
+    <section class="tab active" id="tab-inspect">
+      <div class="empty" id="emptyState">
+        <h3>No dataset loaded</h3>
+        <div id="craterInline"></div>
+        <p>Or pick any dataset in the top bar and press <b>Load</b>. Real LOLA data is labelled <span class="chip measured">real</span>; the bundled fixture is labelled <span class="chip synthetic">synthetic</span>.</p>
+        <details><summary>Upload your own raster</summary>
+          <form id="uploadForm" class="upload">
+            <label>File (GeoTIFF / PNG / JPEG)<input type="file" name="file" required></label>
+            <label>Role<select name="role"><option value="elevation">elevation (georeferenced GeoTIFF)</option><option value="image">image (relative depth only)</option></select></label>
+            <label>Title<input name="title" placeholder="e.g. LOLA crop of Haworth"></label>
+            <label>Source URL<input name="source_url" placeholder="product URL (leave blank if unknown)"></label>
+            <label>Instrument<input name="instrument" placeholder="e.g. LRO LOLA"></label>
+            <label>Product ID<input name="product_id"></label>
+            <button class="primary" type="submit">Upload &amp; validate</button>
+            <div id="uploadMsg" class="msg"></div>
+          </form>
+        </details>
+      </div>
+      <div id="inspectBody" class="hidden"></div>
+    </section>
+    <section class="tab" id="tab-understand"><div id="layerList"></div></section>
+    <section class="tab" id="tab-prioritise"><div id="priorityBody"></div></section>
+    <section class="tab" id="tab-navigate"><div id="navBody"></div></section>
+    <section class="tab" id="tab-report"><div id="reportBody"></div></section>
+    <section class="tab" id="tab-simulate"><div id="simBody"><div class="empty"><h3>Rover traverse simulation</h3><p>Load a dataset and plan a route (step 4) first.</p></div></div></section>
+  </aside>
+
+  <section class="viewports">
+    <div class="vp vp2d">
+      <div class="vp-head">
+        <div class="seg" id="modeSeg" role="group" aria-label="Click mode">
+          <button data-mode="inspect" class="active" title="Click a cell to inspect all layers and evidence">Inspect</button>
+          <button data-mode="start" title="Click to set the route start">Set start</button>
+          <button data-mode="goal" title="Click to set the route goal">Set goal</button>
+          <button data-mode="annotate" title="Add a manual annotation">Annotate</button>
+        </div>
+        <div class="vp-tools">
+          <label>Layer <select id="layerSelect"></select></label>
+          <label title="Blend layer over hillshade">Opacity <input type="range" id="opacity" min="0" max="100" value="85"></label>
+          <label title="IAU-named features from the USGS Gazetteer"><input type="checkbox" id="showNames" checked> crater names</label>
+          <label><input type="checkbox" id="showFeatures"> anomalies</label>
+          <button id="fitBtn" class="ghost" title="Fit map to view">Fit</button>
+        </div>
+      </div>
+      <div class="canvas-wrap" id="mapWrap">
+        <canvas id="map"></canvas>
+        <div class="readout" id="readout">—</div>
+        <div class="legend" id="legend"></div>
+        <div class="statuschip" id="layerStatus"></div>
+        <div class="loading hidden" id="loading"><div class="spinner"></div><span id="loadingText">Loading…</span></div>
+      </div>
+    </div>
+    <div class="vp vp3d">
+      <div class="vp-head">
+        <div class="vp-title" id="title3d">3D terrain</div>
+        <div class="vp-tools">
+          <label>Vertical ×<input type="range" id="exag" min="1" max="10" step="0.5" value="2"><span id="exagVal">2</span></label>
+          <button id="reset3d" class="ghost">Reset view</button>
+        </div>
+      </div>
+      <div class="canvas-wrap" id="view3d"><div class="label3d" id="label3d"></div></div>
+    </div>
+    <div class="inspector hidden" id="inspector"></div>
+    <div class="simoverlay hidden" id="simOverlay">
+      <div class="simview" id="simView"></div>
+      <div class="sim-top">
+        <div class="brandpill"><span class="live"></span>SIMULATION</div>
+        <div class="verdict" id="simVerdict">—</div>
+        <button class="ghost glass" id="simClose" title="Back to map view">Exit ✕</button>
+      </div>
+      <div class="simlabel" id="simLabel"></div>
+      <div class="hud" id="simHud"></div>
+      <div class="sidecol">
+        <canvas class="minimap" id="simMini" width="440" height="440"></canvas>
+        <div class="viewopts glass">
+          <label title="Illustrative: the polar sun stays within ~1.6° of the horizon; its azimuth depends on date/time, which this simulation does not model">Sun azimuth <span class="tagi">illustrative</span><input type="range" id="sunAz" min="0" max="359" value="135"><output id="sunAzV">135°</output></label>
+          <label title="Display exposure only (tone mapping); does not change physics">Exposure<input type="range" id="expo" min="0.5" max="3" step="0.05" value="1.4"><output id="expoV">1.40</output></label>
+          <label title="Adds a visual-only regolith micro-texture; it does not change terrain heights or physics"><input type="checkbox" id="detailTog" checked> Regolith detail <span class="tagi">visual only</span></label>
+        </div>
+      </div>
+      <div class="sim-bottom glass">
+        <div class="playbar">
+          <button id="simPlay" class="playbtn" title="Play / pause (space)">▶</button>
+          <button id="simRestart" class="ghost" title="Restart">⟲</button>
+          <div class="timeline"><input type="range" id="simScrub" min="0" max="1000" value="0"><div class="evmarks" id="evMarks"></div></div>
+          <span class="mono clock" id="simClock">T+0:00:00</span>
+          <label class="rate">×<select id="simRate"><option>10</option><option selected>100</option><option>1000</option><option>10000</option></select></label>
+          <span class="seg" id="camSeg"><button data-cam="chase" class="active">Chase</button><button data-cam="cinematic">Cinematic</button><button data-cam="ground">Ground</button><button data-cam="orbit">Free</button><button data-cam="overview">Overhead</button></span>
+        </div>
+        <div class="charts"><canvas id="chSlope"></canvas><canvas id="chSlip"></canvas><canvas id="chSoc"></canvas></div>
+      </div>
+    </div>
+  </section>
+</main>
+<div class="modal hidden" id="craterModal" role="dialog" aria-label="Crater library">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div><div class="kick">Crater library</div><h2>South-pole craters</h2>
+        <p class="ld">Real NASA data windows centred on IAU gazetteer positions. Thumbnails are LOLA shaded relief (illustrative lighting) with permanently shadowed ground tinted blue.</p></div>
+      <button class="ghost" id="craterClose">✕</button>
+    </div>
+    <div class="cgrid" id="craterGrid"></div>
+  </div>
+</div>
+<div class="modal hidden" id="alvikModal" role="dialog" aria-label="Alvik mission uploader">
+  <div class="modal-card alvik-card">
+    <div class="modal-head">
+      <div><div class="kick">Arduino Alvik · MicroPython</div><h2>Mission uploader</h2>
+        <p class="ld">Your planned lunar route, shrunk to a 4 ft × 4 ft floor grid and converted into Alvik <code>rotate()</code> / <code>move()</code> steps.
+          It is a geometric replay: the robot traces the path shape; it does not reproduce lunar terrain physics.</p></div>
+      <button class="ghost" id="alvikClose">✕</button>
+    </div>
+    <div class="alvik-grid">
+      <div class="arena-wrap">
+        <canvas id="arena" width="720" height="720"></canvas>
+        <div class="arena-bar"><button id="arenaPlay" class="ghost">▶ Preview run</button><span class="mono" id="arenaClock">0.0 s</span>
+          <span class="legend-inline"><i style="background:#5ef0a8"></i>normal <i style="background:#7fb8ff"></i>PSR <i style="background:#ffd67a"></i>high slip <i style="background:#ff6b6b"></i>sim failure</span></div>
+      </div>
+      <div class="alvik-side">
+        <div class="card"><b>Arena settings</b>
+          <div class="slider-row"><span>Safety margin</span><input type="range" id="alMargin" min="60" max="300" step="10" value="120"><output id="alMarginV">120 mm</output></div>
+          <div class="slider-row"><span>Path tolerance</span><input type="range" id="alTol" min="2" max="30" step="1" value="6"><output id="alTolV">6 mm</output></div>
+          <div class="slider-row"><span>Min step length</span><input type="range" id="alMin" min="5" max="60" step="5" value="15"><output id="alMinV">15 mm</output></div>
+          <label class="ld"><input type="checkbox" id="alStopFail" checked> Stop where the simulated rover failed (if it did)</label>
+          <div class="btnrow"><button class="primary" id="alGen">Generate program</button></div>
+        </div>
+        <div id="alStats"></div>
+        <div class="card"><b>Upload to the Alvik</b>
+          <p class="ld">Connect the Alvik by USB-C and switch it ON. The existing <code>main.py</code> is backed up first.</p>
+          <div class="slider-row" style="grid-template-columns:1fr auto"><select id="alPort"><option value="">— no port found —</option></select><button class="ghost" id="alRefresh" title="Rescan ports">⟳</button></div>
+          <label class="ld"><input type="checkbox" id="alAll"> show all serial ports</label>
+          <div class="btnrow"><button class="primary" id="alUpload" disabled>Upload &amp; run</button><a id="alDownload" class="dl" href="#" download="main.py"><button class="ghost" disabled id="alDlBtn">Download main.py</button></a></div>
+          <div class="msg" id="alMsg"></div>
+        </div>
+        <details class="card"><summary>Generated MicroPython</summary><pre class="code" id="alCode"></pre></details>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="module" src="/static/app.js"></script>
+</body>
+</html>

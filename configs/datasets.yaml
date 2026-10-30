@@ -1,0 +1,192 @@
+# Dataset registry. Each dataset lists layer files (repo-relative) by ROLE.
+# Roles understood by the pipeline:
+#   elevation, elevation_uncertainty, effective_resolution, slope_reference,
+#   psr_mask, image, thermal_max, thermal_avg, ice_stability_depth, hydrogen
+# A role absent here is reported in the UI and reports as "not ingested".
+
+datasets:
+  - id: lola_shackleton_20m
+    title: "Shackleton crater & south pole — LOLA 20 m/px (real data)"
+    kind: real
+    region_note: >
+      32 x 32 km window in south polar stereographic coordinates
+      (x -12..20 km, y -16..16 km) containing Shackleton crater, the south
+      pole, and the Shackleton–de Gerlache connecting ridge. Named features
+      are listed only because this window actually covers them.
+    covers_features: ["Shackleton crater (rim clipped ~0.9 km at the window's lower edge)", "Lunar south pole", "Shackleton–de Gerlache ridge (partial)"]
+    crater: {name: Shackleton, lat: -89.67, lon: 129.78, diameter_km: 20.925, link: "http://planetarynames.wr.usgs.gov/Feature/5450",
+             note: "Rim near-continuously lit; floor in permanent shadow; Artemis III candidate region"}
+    fetch: "python scripts/fetch_pgda_aoi.py --aoi shackleton && python scripts/rasterize_diviner_prp.py"
+    citation: "Barker et al. (2023) PSJ 4:183 doi:10.3847/PSJ/acf3e1; Paige et al. (2010) Science 330:479"
+    layers:
+      elevation:
+        file: data/raw/pgda/shackleton/LDEM_80S_20MPP_ADJ.TIF
+        source_name: "NASA GSFC PGDA — LOLA south pole 20 m DEM (product 90)"
+        product_id: LDEM_80S_20MPP_ADJ
+        source_url: https://pgda.gsfc.nasa.gov/data/LOLA_20mpp/LDEM_80S_20MPP_ADJ.TIF
+        instrument: LRO LOLA
+        acquisition: "LRO mission 2009– (multi-year altimetry; see Barker et al. 2023)"
+        units: "m, height relative to 1737.4 km reference sphere"
+        processing_level: "Gridded DEM, crossover-adjusted (derived from LOLA RDR)"
+        license: "NASA data — public domain; cite Barker et al. 2023"
+        status: measured
+      elevation_uncertainty:
+        file: data/raw/pgda/shackleton/LDEM_80S_20MPP_ADJ_ERR.TIF
+        source_name: "PGDA LOLA DEM error estimate"
+        product_id: LDEM_80S_20MPP_ADJ_ERR
+        source_url: https://pgda.gsfc.nasa.gov/data/LOLA_20mpp/LDEM_80S_20MPP_ADJ_ERR.TIF
+        instrument: LRO LOLA
+        units: m
+        processing_level: "Derived uncertainty"
+        license: "NASA data — public domain"
+        status: derived
+      effective_resolution:
+        file: data/raw/pgda/shackleton/LDEM_80S_20MPP_ADJ_EFFRES.TIF
+        source_name: "PGDA LOLA DEM effective resolution"
+        product_id: LDEM_80S_20MPP_ADJ_EFFRES
+        source_url: https://pgda.gsfc.nasa.gov/data/LOLA_20mpp/LDEM_80S_20MPP_ADJ_EFFRES.TIF
+        instrument: LRO LOLA
+        units: m
+        processing_level: "Derived (LOLA shot density)"
+        license: "NASA data — public domain"
+        status: derived
+      slope_reference:
+        file: data/raw/pgda/shackleton/LDSM_80S_20MPP_ADJ.TIF
+        source_name: "PGDA LOLA slope map"
+        product_id: LDSM_80S_20MPP_ADJ
+        source_url: https://pgda.gsfc.nasa.gov/data/LOLA_20mpp/LDSM_80S_20MPP_ADJ.TIF
+        instrument: LRO LOLA
+        units: deg
+        processing_level: "Derived slope (PGDA)"
+        license: "NASA data — public domain"
+        status: derived
+      psr_mask:
+        file: data/raw/pgda/shackleton/LPSR_80S_20MPP_ADJ.TIF
+        source_name: "PGDA LOLA permanently shadowed region map"
+        product_id: LPSR_80S_20MPP_ADJ
+        source_url: https://pgda.gsfc.nasa.gov/data/LOLA_20mpp/LPSR_80S_20MPP_ADJ.TIF
+        instrument: LRO LOLA (illumination modelling on DEM)
+        units: "1 = PSR, 0 = not PSR"
+        processing_level: "Derived from horizon/illumination modelling, not image darkness"
+        license: "NASA data — public domain"
+        status: derived
+      image:
+        file: data/raw/pgda/shackleton/M139729686LE_20MPP.TIF
+        source_name: "LROC NAC M139729686LE, resampled to 20 m/px on the LOLA grid by PGDA"
+        product_id: M139729686LE_20MPP
+        source_url: https://pgda.gsfc.nasa.gov/data/LOLA_20mpp/M139729686LE_20MPP.TIF
+        instrument: LRO LROC NAC
+        acquisition: "LROC NAC observation M139729686 (see LROC archive for time/geometry)"
+        units: "radiance factor (I/F), as distributed"
+        processing_level: "Map-projected NAC image (PGDA, co-registered to LOLA)"
+        license: "NASA data — public domain"
+        status: measured
+      illumination_avg:
+        file: data/processed/illumination/shackleton/sun_avg_visibility.tif
+        source_name: "PGDA average solar visibility, 85S, 60 m/px (Mazarico et al. 2011)"
+        product_id: AVGVISIB_85S_060M_201608
+        source_url: https://pgda.gsfc.nasa.gov/data/MoonIllumination/AVGVISIB_85S_060M_201608.TIF
+        instrument: LRO LOLA (illumination modelling)
+        acquisition: "Hourly sun visibility averaged over 18.6 years"
+        units: "fraction of time the solar disc is visible (DN x 0.00004)"
+        processing_level: "Derived model product; AOI crop by scripts/fetch_illumination_aoi.py"
+        license: "NASA data — public domain; cite Mazarico et al. 2011"
+        status: derived
+      earth_visibility_avg:
+        file: data/processed/illumination/shackleton/earth_avg_visibility.tif
+        source_name: "Average Earth visibility, 85S, 60 m/px (Mazarico et al. 2011)"
+        product_id: AVGVISIB_85S_060M_201608_EARTH
+        source_url: http://imbrium.mit.edu/EXTRAS/ILLUMINATION/IMG/AVGVISIB_85S_060M_201608_EARTH.IMG
+        instrument: LRO LOLA (visibility modelling)
+        acquisition: "Averaged over 18.6 years"
+        units: "fraction of time the Earth disc is visible (DN x 0.00004)"
+        processing_level: "Derived model product; AOI rows fetched by HTTP range"
+        license: "NASA data — public domain; cite Mazarico et al. 2011"
+        status: derived
+      thermal_max:
+        file: data/processed/diviner/shackleton/prp_temp_max.tif
+        source_name: "Diviner Polar Resource Product (south), annual max surface temperature"
+        product_id: DLRE_PRP_SOUTH.TAB:temp_max
+        source_url: https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/dlre_prp_south.tab
+        instrument: LRO Diviner (DLRE)
+        acquisition: "First year of mapping orbit (thermal model fit)"
+        units: K
+        processing_level: "PDS L5 model-fit product, binned to this grid by scripts/rasterize_diviner_prp.py"
+        license: "NASA data — public domain; cite Paige et al. 2010"
+        status: derived
+      thermal_avg:
+        file: data/processed/diviner/shackleton/prp_temp_avg.tif
+        source_name: "Diviner PRP (south), annual average temperature at 2 cm depth"
+        product_id: DLRE_PRP_SOUTH.TAB:temp_avg
+        source_url: https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/dlre_prp_south.tab
+        instrument: LRO Diviner (DLRE)
+        units: K
+        processing_level: "PDS L5 model-fit product, binned"
+        license: "NASA data — public domain"
+        status: derived
+      ice_stability_depth:
+        file: data/processed/diviner/shackleton/prp_ice_depth.tif
+        source_name: "Diviner PRP (south), modelled water-ice stability depth"
+        product_id: DLRE_PRP_SOUTH.TAB:ice_depth
+        source_url: https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/dlre_prp_south.tab
+        instrument: LRO Diviner (DLRE)
+        units: "m (depth where sublimation < 1 kg m^-2 Gyr^-1; deeper than 2.87 m is encoded as 999)"
+        processing_level: "PDS L5 thermal-model product, binned"
+        license: "NASA data — public domain"
+        status: derived
+
+  - id: lola_pds_875s
+    title: "LOLA GDR 87.5°S 20 m/px — PDS archive IMG (real data, full product)"
+    kind: real
+    region_note: "Full LDEM_875S_20M product (pole to 87.5°S, 151.7 km square). Analysis crops to a 32 km window at the pole."
+    covers_features: ["Lunar south pole", "Shackleton crater"]
+    fetch: "see README → Data setup (PDS Geosciences Node)"
+    citation: "Smith et al., LOLA GDR, LRO-L-LOLA-4-GDR-V1.0, NASA PDS"
+    crop_bounds_m: [-12000, -16000, 20000, 16000]
+    layers:
+      elevation:
+        file: data/raw/lola/ldem_875s_20m.img
+        source_name: "NASA PDS Geosciences Node — LOLA GDR LDEM_875S_20M"
+        product_id: LDEM_875S_20M
+        source_url: https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/data/lola_gdr/polar/img/ldem_875s_20m.img
+        instrument: LRO LOLA
+        units: "m, height relative to 1737.4 km sphere"
+        processing_level: LRO-L-LOLA-4-GDR-V1.0
+        license: "NASA data — public domain"
+        status: measured
+
+  - id: demo_synthetic
+    title: "SYNTHETIC demo terrain (not lunar data)"
+    kind: synthetic
+    region_note: "Procedurally generated craters on a 12.8 km square. Does not describe any real location."
+    covers_features: []
+    fetch: "python scripts/make_demo_fixture.py"
+    citation: "Synthetic — generated by this repository"
+    layers:
+      elevation:
+        file: data/demo/synthetic_dem.tif
+        source_name: "SYNTHETIC demo DEM"
+        product_id: demo_synthetic_dem_v1
+        instrument: none (synthetic)
+        units: "m (synthetic)"
+        processing_level: synthetic
+        license: "repository licence"
+        status: synthetic
+      psr_mask:
+        file: data/demo/synthetic_psr.tif
+        source_name: "SYNTHETIC PSR mask"
+        product_id: demo_synthetic_psr_v1
+        instrument: none (synthetic)
+        units: "1 = PSR (synthetic)"
+        processing_level: synthetic
+        license: "repository licence"
+        status: synthetic
+      thermal_max:
+        file: data/demo/synthetic_tmax.tif
+        source_name: "SYNTHETIC annual max temperature"
+        product_id: demo_synthetic_tmax_v1
+        instrument: none (synthetic)
+        units: "K (synthetic)"
+        processing_level: synthetic
+        license: "repository licence"
+        status: synthetic

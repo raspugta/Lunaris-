@@ -1,0 +1,1 @@
+{"width":472,"height":472,"transform":[320.0,0.0,-170560.0,0.0,-320.0,180480.0],"zmin":-5033.9033203125,"zscale":0.1635675429279202,"res_m":320.0,"note":"uint16 heights (zmin + q*zscale, metres) then uint8 PSR fraction*255; analysis grid"}

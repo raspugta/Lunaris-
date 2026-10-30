@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+# Large raw inputs and derived products are never committed (see README → Data setup)
+data/raw/
+data/processed/
+# demo fixture is regenerated deterministically by scripts/make_demo_fixture.py
+data/demo/*.tif
+# third-party reference papers are linked, not redistributed (docs/references/README.md)
+docs/references/*.pdf
+docs/references/*.txt
+.vercel/

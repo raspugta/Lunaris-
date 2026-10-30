@@ -1,0 +1,156 @@
+{
+  "generated": "2026-10-30T07:04:14Z",
+  "registration_pds_vs_pgda": {
+    "what": "PDS3 IMG georeferencing (our label parser) vs PGDA GeoTIFF over the same 32 km window",
+    "median_diff_m": 0.066406,
+    "mad_m": 0.738922,
+    "p95_abs_diff_m": 3.972046,
+    "best_integer_shift_px_at_40m": [
+      0,
+      0
+    ],
+    "highpass_corr": 0.94802,
+    "pass": true
+  },
+  "terrain": {
+    "analysis_res_m": 40.0,
+    "slope_vs_reference": {
+      "pearson_r": 0.99778,
+      "mean_diff_deg": -0.132127,
+      "mad_deg": 0.361481,
+      "note": "Consistency check against the producer slope (same source DEM; not independent validation). Our slope uses a coarser baseline, so it is expected to be lower on average."
+    },
+    "hazard_fractions": {
+      "Unknown / insufficient evidence": 0.009975,
+      "Low": 0.317512,
+      "Moderate": 0.165823,
+      "High": 0.253231,
+      "Blocked (impassable)": 0.253458
+    },
+    "psr_fraction": 0.257188,
+    "uncertain_fraction": 0.001736,
+    "image_coverage_fraction": 0.101734
+  },
+  "ice_priority": {
+    "status": "ok",
+    "weights": {
+      "psr": 0.35,
+      "thermal_max": 0.4,
+      "ice_stability_depth": 0.25
+    },
+    "layers_used": [
+      "psr",
+      "thermal_max",
+      "ice_stability_depth"
+    ],
+    "layers_missing": [
+      "hydrogen"
+    ],
+    "assessed_fraction": 1.0,
+    "class_fractions": {
+      "Not assessed (insufficient evidence)": 0.0,
+      "Lower relative priority": 0.733734,
+      "Moderate relative priority": 0.029237,
+      "Candidate for further investigation": 0.237028
+    },
+    "sensitivity": {
+      "perturbation": 0.5,
+      "scenarios": 9,
+      "fraction_of_assessed_cells_changing_class": 0.314541,
+      "median_score_std": 0.016203
+    },
+    "wording": "Relative investigation priority from available evidence. Not a detection of water ice."
+  },
+  "route_demo": {
+    "start": [
+      200,
+      160
+    ],
+    "goal": [
+      650,
+      732
+    ],
+    "found": true,
+    "runtime_s": 1.92,
+    "summary": {
+      "n_cells": 851,
+      "length_m": 39434.481938,
+      "length_cells": 985.862048,
+      "blocked_cells_crossed": 0,
+      "cost": 102420.354602,
+      "max_slope_deg": 24.77523,
+      "mean_slope_deg": 7.249918,
+      "hazard_exposure": {
+        "Unknown / insufficient evidence": 0,
+        "Low": 535,
+        "Moderate": 114,
+        "High": 202,
+        "Blocked (impassable)": 0
+      },
+      "cells_in_psr": 1,
+      "total_ascent_m": 2844.312988,
+      "total_descent_m": 1088.151123
+    },
+    "validation": {
+      "all_cells_traversable": true,
+      "recomputed_cost_matches": true
+    },
+    "alternatives": {
+      "distance_only": {
+        "length_m": 36984.288578,
+        "cost": 193096.23303,
+        "blocked_cells_crossed": 0,
+        "why_rejected": "89% higher hazard-weighted cost"
+      },
+      "direct_line": {
+        "length_m": 30335.844123,
+        "cost": null,
+        "blocked_cells_crossed": 282,
+        "why_rejected": "crosses 282 blocked/unknown cells"
+      }
+    }
+  },
+  "depth_vs_lola": {
+    "status": "ok",
+    "info": {
+      "model_id": "depth-anything/Depth-Anything-V2-Small-hf",
+      "device": "cpu",
+      "runtime_s": 2.36,
+      "input_size": "579x1024",
+      "cached": true
+    },
+    "comparison": {
+      "status": "ok",
+      "notes": [],
+      "coverage_fraction": 0.084434,
+      "image_footprint_fraction": 0.102033,
+      "low_signal_excluded_fraction": 0.017599,
+      "pearson_r_full": 0.839334,
+      "spearman_rho_full": 0.724972,
+      "sign_convention": "larger depth-output ~ higher terrain",
+      "pearson_r_local_relief": 0.730386,
+      "local_relief_scale": "Gaussian high-pass sigma=6 px (~120 m)",
+      "alignment": {
+        "best_integer_shift_px": [
+          -1,
+          -1
+        ],
+        "hp_corr_at_best_shift": 0.684415,
+        "interpretation": "non-zero shift: residual mis-registration or model-induced displacement (shading bias)"
+      },
+      "affine_calibration_oos": {
+        "rmse_m": 597.882812,
+        "mae_m": 552.572205,
+        "test_elev_std_m": 265.175629,
+        "skill_vs_mean": -1.254667,
+        "label": "Out-of-sample after affine fit to LOLA on the other spatial half. Calibration uses the reference; NOT an independent accuracy."
+      },
+      "resolution": {
+        "image_grid_m": 20.0,
+        "dem_effective_resolution_median_m": 15.088127
+      },
+      "calibration_status": "uncalibrated (relative depth)"
+    },
+    "reason": null
+  }
+}

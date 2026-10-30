@@ -1,0 +1,1 @@
+{"status":"ok","version":"1.0.0","environment":{"torch":"n/a (web demo)","cuda":false,"vram_mb":null,"transformers":null},"model_id":"depth-anything/Depth-Anything-V2-Small-hf"}

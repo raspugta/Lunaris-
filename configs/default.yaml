@@ -1,0 +1,71 @@
+# Lunar PSR Intelligence Platform — default configuration.
+# Every threshold below is a PROTOTYPE ASSUMPTION unless a citation is given.
+# Paths are relative to the repository root.
+
+paths:
+  raw: data/raw
+  processed: data/processed
+  demo: data/demo
+  datasets_registry: configs/datasets.yaml
+
+analysis:
+  # Integer block-averaging factor applied to the native grid before analysis.
+  # 2 on a 20 m/px LOLA grid -> 40 m/px analysis cells.
+  downsample_factor: 2
+  # Neighbourhood (in analysis cells, odd) used for roughness.
+  roughness_window: 5
+  # A cell is flagged "uncertain" when the PGDA DEM error estimate exceeds this
+  # (m) OR the DEM effective resolution is coarser than the given value (m),
+  # i.e. the elevation there is interpolated across sparse LOLA tracks.
+  max_elevation_uncertainty_m: 0.75
+  max_effective_resolution_m: 80.0
+
+hazard:
+  # Slope class edges (degrees). Prototype assumptions informed by public
+  # rover-design figures (e.g. VIPER design slope ~15 deg, Apollo LRV rated
+  # ~25 deg). NOT a certified rover specification.
+  slope_classes_deg: [10.0, 15.0, 25.0]   # low < 10 <= moderate < 15 <= high < 25 <= blocked
+  slope_blocked_deg: 25.0
+  # Roughness = RMS residual from a local best-fit plane (m) at analysis scale.
+  roughness_high_m: 2.0
+  roughness_blocked_m: 6.0
+
+navigation:
+  weights:
+    slope: 8.0          # multiplies (slope / slope_blocked)^2
+    roughness: 3.0      # multiplies (roughness / roughness_blocked)
+    uncertainty: 4.0    # added where elevation uncertainty exceeds threshold
+    psr: 1.5            # added inside a PSR (power / thermal operations penalty)
+  block_nodata: true
+  # Cost floor is 1.0 per unit distance, which keeps the octile heuristic admissible.
+
+ice_priority:
+  # Transparent weighted-evidence score in [0, 1]. Missing layers are excluded
+  # from the weighted mean and reduce the evidence-coverage fraction.
+  weights:
+    psr: 0.35              # LOLA illumination-model PSR membership
+    thermal_max: 0.40      # Diviner PRP annual max surface temperature
+    ice_stability_depth: 0.25   # Diviner PRP modelled ice-stability depth
+  # Annual max T below which water ice is stable against sublimation over
+  # geologic time (~110 K; Vasavada et al. 1999; Paige et al. 2010).
+  thermal_full_score_K: 100.0
+  thermal_zero_score_K: 130.0
+  # Ice-stability depth (m) mapped to score: 0 m -> 1, >= this -> 0.
+  stability_depth_zero_score_m: 1.0
+  # Minimum fraction of total weight that must be available, AND the thermal
+  # layer must be present, for a cell to be assessed at all.
+  min_evidence_fraction: 0.6
+  require_layers: [thermal_max]
+  sensitivity_perturbation: 0.5   # +/- 50 % one-at-a-time weight perturbation
+
+reconstruction:
+  model_id: depth-anything/Depth-Anything-V2-Small-hf
+  # Pixels of the source image below this normalised brightness are excluded
+  # from the depth/LOLA comparison (no usable shading signal).
+  min_signal_fraction: 0.02
+  max_input_side: 1024
+  device: auto   # auto | cpu | cuda
+
+viewer:
+  mesh_max_side: 256
+  default_vertical_exaggeration: 2.0

@@ -1,0 +1,607 @@
+{
+ "source": "IAU/USGS Gazetteer of Planetary Nomenclature (MOON_nomenclature_center_pts), features south of 79.5S, IAU-adopted",
+ "url": "https://planetarynames.wr.usgs.gov/",
+ "n": 75,
+ "features": [
+  {
+   "name": "Drygalski",
+   "type": "Crater, craters",
+   "lat": -79.5738,
+   "lon": 272.823,
+   "diameter_km": 162.489,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/1645"
+  },
+  {
+   "name": "Ashbrook",
+   "type": "Crater, craters",
+   "lat": -81.1043,
+   "lon": 249.425,
+   "diameter_km": 157.68,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/422"
+  },
+  {
+   "name": "Mons Mouton",
+   "type": "Mons, montes",
+   "lat": -84.6,
+   "lon": 31.0,
+   "diameter_km": 130.0,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/16070"
+  },
+  {
+   "name": "Scott",
+   "type": "Crater, craters",
+   "lat": -82.3532,
+   "lon": 48.5154,
+   "diameter_km": 107.823,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/5395"
+  },
+  {
+   "name": "Amundsen",
+   "type": "Crater, craters",
+   "lat": -84.4398,
+   "lon": 83.0691,
+   "diameter_km": 103.395,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/247"
+  },
+  {
+   "name": "Cabeus",
+   "type": "Crater, craters",
+   "lat": -85.3303,
+   "lon": 317.8673,
+   "diameter_km": 100.582,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/953"
+  },
+  {
+   "name": "Lacus Tenebrarum",
+   "type": "Lacus, lac\u016bs",
+   "lat": -86.71,
+   "lon": 272.33,
+   "diameter_km": 85.0,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/16415"
+  },
+  {
+   "name": "Nobile",
+   "type": "Crater, craters",
+   "lat": -85.2752,
+   "lon": 53.2725,
+   "diameter_km": 79.272,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/4321"
+  },
+  {
+   "name": "Hedervari",
+   "type": "Crater, craters",
+   "lat": -81.7719,
+   "lon": 85.6005,
+   "diameter_km": 74.141,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/2620"
+  },
+  {
+   "name": "Malapert",
+   "type": "Crater, craters",
+   "lat": -84.9998,
+   "lon": 11.4031,
+   "diameter_km": 72.385,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/3603"
+  },
+  {
+   "name": "Mons Kocher",
+   "type": "Mons, montes",
+   "lat": -85.46,
+   "lon": 241.94,
+   "diameter_km": 67.0,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/16394"
+  },
+  {
+   "name": "Mons Malapert",
+   "type": "Mons, montes",
+   "lat": -85.98,
+   "lon": 358.33,
+   "diameter_km": 67.0,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/16338"
+  },
+  {
+   "name": "Newton A",
+   "type": "Satellite Feature",
+   "lat": -80.051,
+   "lon": 339.1849,
+   "diameter_km": 62.265,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/11610"
+  },
+  {
+   "name": "Idel son",
+   "type": "Crater, craters",
+   "lat": -81.3478,
+   "lon": 112.6939,
+   "diameter_km": 59.816,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/2650"
+  },
+  {
+   "name": "Cabeus B",
+   "type": "Satellite Feature",
+   "lat": -82.2587,
+   "lon": 305.4154,
+   "diameter_km": 59.617,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/8058"
+  },
+  {
+   "name": "Oberbeck",
+   "type": "Crater, craters",
+   "lat": -83.55,
+   "lon": 68.14,
+   "diameter_km": 58.0,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/16449"
+  },
+  {
+   "name": "Nefed ev",
+   "type": "Crater, craters",
+   "lat": -81.0719,
+   "lon": 135.7723,
+   "diameter_km": 52.936,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/14538"
+  },
+  {
+   "name": "Shoemaker",
+   "type": "Crater, craters",
+   "lat": -88.137,
+   "lon": 45.911,
+   "diameter_km": 51.816,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/5494"
+  },
+  {
+   "name": "Haworth",
+   "type": "Crater, craters",
+   "lat": -87.45,
+   "lon": 354.83,
+   "diameter_km": 51.423,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/14502"
+  },
+  {
+   "name": "Newton B",
+   "type": "Satellite Feature",
+   "lat": -81.4541,
+   "lon": 343.2801,
+   "diameter_km": 45.978,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/11611"
+  },
+  {
+   "name": "Henson",
+   "type": "Crater, craters",
+   "lat": -88.57,
+   "lon": 229.37,
+   "diameter_km": 43.0,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/16004"
+  },
+  {
+   "name": "Mons Cabeus",
+   "type": "Mons, montes",
+   "lat": -83.67,
+   "lon": 323.84,
+   "diameter_km": 43.0,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/16396"
+  },
+  {
+   "name": "Faustini",
+   "type": "Crater, craters",
+   "lat": -87.1832,
+   "lon": 84.3099,
+   "diameter_km": 42.485,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/1919"
+  },
+  {
+   "name": "Cabeus A",
+   "type": "Satellite Feature",
+   "lat": -82.077,
+   "lon": 319.7597,
+   "diameter_km": 40.882,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/8057"
+  },
+  {
+   "name": "Wiechert",
+   "type": "Crater, craters",
+   "lat": -84.0334,
+   "lon": 164.701,
+   "diameter_km": 40.823,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/6541"
+  },
+  {
+   "name": "Malapert C",
+   "type": "Satellite Feature",
+   "lat": -80.9816,
+   "lon": 10.0832,
+   "diameter_km": 38.988,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/11083"
+  },
+  {
+   "name": "Wiechert P",
+   "type": "Satellite Feature",
+   "lat": -85.1276,
+   "lon": 151.7574,
+   "diameter_km": 38.623,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/13889"
+  },
+  {
+   "name": "Mons Amundsen",
+   "type": "Mons, montes",
+   "lat": -82.57,
+   "lon": 75.71,
+   "diameter_km": 38.0,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/16397"
+  },
+  {
+   "name": "Wiechert J",
+   "type": "Satellite Feature",
+   "lat": -85.2019,
+   "lon": 182.363,
+   "diameter_km": 34.887,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/13888"
+  },
+  {
+   "name": "Malapert A",
+   "type": "Satellite Feature",
+   "lat": -80.1827,
+   "lon": 356.2103,
+   "diameter_km": 33.333,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/11081"
+  },
+  {
+   "name": "Sverdrup",
+   "type": "Crater, craters",
+   "lat": -88.3209,
+   "lon": 206.6125,
+   "diameter_km": 32.827,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/5782"
+  },
+  {
+   "name": "de Gerlache",
+   "type": "Crater, craters",
+   "lat": -88.4849,
+   "lon": 271.6553,
+   "diameter_km": 32.705,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/1439"
+  },
+  {
+   "name": "Wiechert U",
+   "type": "Satellite Feature",
+   "lat": -83.43,
+   "lon": 149.0414,
+   "diameter_km": 29.955,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/13890"
+  },
+  {
+   "name": "Scott E",
+   "type": "Satellite Feature",
+   "lat": -81.17,
+   "lon": 35.7005,
+   "diameter_km": 29.217,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/13015"
+  },
+  {
+   "name": "Idel son L",
+   "type": "Satellite Feature",
+   "lat": -83.9919,
+   "lon": 118.5631,
+   "diameter_km": 28.039,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/10114"
+  },
+  {
+   "name": "Drygalski P",
+   "type": "Satellite Feature",
+   "lat": -80.9663,
+   "lon": 260.3054,
+   "diameter_km": 27.976,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/8838"
+  },
+  {
+   "name": "Wiechert A",
+   "type": "Satellite Feature",
+   "lat": -82.3752,
+   "lon": 168.6353,
+   "diameter_km": 26.866,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/13886"
+  },
+  {
+   "name": "Slater",
+   "type": "Crater, craters",
+   "lat": -88.0792,
+   "lon": 111.2881,
+   "diameter_km": 25.119,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/15325"
+  },
+  {
+   "name": "Amundsen C",
+   "type": "Satellite Feature",
+   "lat": -80.7588,
+   "lon": 85.2121,
+   "diameter_km": 24.225,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/7236"
+  },
+  {
+   "name": "Kocher",
+   "type": "Crater, craters",
+   "lat": -84.4671,
+   "lon": 225.9756,
+   "diameter_km": 24.031,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/14535"
+  },
+  {
+   "name": "Demonax B",
+   "type": "Satellite Feature",
+   "lat": -81.4678,
+   "lon": 72.0459,
+   "diameter_km": 23.166,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/8719"
+  },
+  {
+   "name": "Burbidge",
+   "type": "Crater, craters",
+   "lat": -86.35,
+   "lon": 48.6,
+   "diameter_km": 21.0,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/16250"
+  },
+  {
+   "name": "Shackleton",
+   "type": "Crater, craters",
+   "lat": -89.67,
+   "lon": 129.78,
+   "diameter_km": 20.925,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/5450"
+  },
+  {
+   "name": "Wiechert E",
+   "type": "Satellite Feature",
+   "lat": -83.5634,
+   "lon": 176.0168,
+   "diameter_km": 20.865,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/13887"
+  },
+  {
+   "name": "Whitaker",
+   "type": "Crater, craters",
+   "lat": -84.67,
+   "lon": 0.69,
+   "diameter_km": 20.0,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/16395"
+  },
+  {
+   "name": "De Forest P",
+   "type": "Satellite Feature",
+   "lat": -79.7268,
+   "lon": 183.082,
+   "diameter_km": 19.474,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/8616"
+  },
+  {
+   "name": "Malapert E",
+   "type": "Satellite Feature",
+   "lat": -83.9404,
+   "lon": 19.8292,
+   "diameter_km": 19.474,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/11084"
+  },
+  {
+   "name": "Scott M",
+   "type": "Satellite Feature",
+   "lat": -83.8646,
+   "lon": 34.7362,
+   "diameter_km": 17.846,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/13016"
+  },
+  {
+   "name": "Cartwright",
+   "type": "Crater, craters",
+   "lat": -87.65,
+   "lon": 313.05,
+   "diameter_km": 17.0,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/16416"
+  },
+  {
+   "name": "Haynes",
+   "type": "Crater, craters",
+   "lat": -88.75,
+   "lon": 167.39,
+   "diameter_km": 17.0,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/16418"
+  },
+  {
+   "name": "Brill",
+   "type": "Crater, craters",
+   "lat": -88.27,
+   "lon": 266.59,
+   "diameter_km": 17.0,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/16195"
+  },
+  {
+   "name": "Stose",
+   "type": "Crater, craters",
+   "lat": -86.38,
+   "lon": 32.13,
+   "diameter_km": 16.7,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/16011"
+  },
+  {
+   "name": "Kuhn",
+   "type": "Crater, craters",
+   "lat": -84.482,
+   "lon": 207.5221,
+   "diameter_km": 16.614,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/14536"
+  },
+  {
+   "name": "Newton E",
+   "type": "Satellite Feature",
+   "lat": -79.8572,
+   "lon": 322.6416,
+   "diameter_km": 16.201,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/11614"
+  },
+  {
+   "name": "Schomberger L",
+   "type": "Satellite Feature",
+   "lat": -80.6893,
+   "lon": 17.2723,
+   "diameter_km": 15.978,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/12948"
+  },
+  {
+   "name": "Svedberg",
+   "type": "Crater, craters",
+   "lat": -81.6806,
+   "lon": 65.1505,
+   "diameter_km": 15.34,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/14539"
+  },
+  {
+   "name": "von Baeyer",
+   "type": "Crater, craters",
+   "lat": -81.8013,
+   "lon": 61.8738,
+   "diameter_km": 13.457,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/14540"
+  },
+  {
+   "name": "Spudis",
+   "type": "Crater, craters",
+   "lat": -89.51,
+   "lon": 275.39,
+   "diameter_km": 13.0,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/16007"
+  },
+  {
+   "name": "Laveran",
+   "type": "Crater, craters",
+   "lat": -81.7989,
+   "lon": 200.2159,
+   "diameter_km": 12.515,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/14537"
+  },
+  {
+   "name": "Ibn Bajja",
+   "type": "Crater, craters",
+   "lat": -86.2964,
+   "lon": 284.9639,
+   "diameter_km": 11.977,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/14534"
+  },
+  {
+   "name": "Wapowski",
+   "type": "Crater, craters",
+   "lat": -83.0777,
+   "lon": 53.7893,
+   "diameter_km": 11.45,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/14541"
+  },
+  {
+   "name": "Malapert F",
+   "type": "Satellite Feature",
+   "lat": -81.5259,
+   "lon": 14.7265,
+   "diameter_km": 11.415,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/11085"
+  },
+  {
+   "name": "Braude",
+   "type": "Crater, craters",
+   "lat": -81.8201,
+   "lon": 158.8802,
+   "diameter_km": 11.278,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/14564"
+  },
+  {
+   "name": "Schomberger F",
+   "type": "Satellite Feature",
+   "lat": -80.1762,
+   "lon": 20.1668,
+   "diameter_km": 10.654,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/12943"
+  },
+  {
+   "name": "Demonax C",
+   "type": "Satellite Feature",
+   "lat": -80.2823,
+   "lon": 56.2918,
+   "diameter_km": 10.367,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/8720"
+  },
+  {
+   "name": "Floss",
+   "type": "Crater, craters",
+   "lat": -84.28,
+   "lon": 42.27,
+   "diameter_km": 9.0,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/16251"
+  },
+  {
+   "name": "Malinkin",
+   "type": "Crater, craters",
+   "lat": -87.2217,
+   "lon": 75.9366,
+   "diameter_km": 8.281,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/15242"
+  },
+  {
+   "name": "Tooley",
+   "type": "Crater, craters",
+   "lat": -88.04,
+   "lon": 51.31,
+   "diameter_km": 7.0,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/15938"
+  },
+  {
+   "name": "Marvin",
+   "type": "Crater, craters",
+   "lat": -89.13,
+   "lon": 272.22,
+   "diameter_km": 4.6,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/16008"
+  },
+  {
+   "name": "Rubin",
+   "type": "Crater, craters",
+   "lat": -82.82,
+   "lon": 77.65,
+   "diameter_km": 4.0,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/16273"
+  },
+  {
+   "name": "Bay",
+   "type": "Crater, craters",
+   "lat": -88.76,
+   "lon": 323.15,
+   "diameter_km": 3.5,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/16417"
+  },
+  {
+   "name": "Jaci",
+   "type": "Crater, craters",
+   "lat": -85.42,
+   "lon": 31.23,
+   "diameter_km": 1.8,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/16268"
+  },
+  {
+   "name": "Lhamu",
+   "type": "Crater, craters",
+   "lat": -85.92,
+   "lon": 358.38,
+   "diameter_km": 1.4,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/16317"
+  },
+  {
+   "name": "Masina",
+   "type": "Crater, craters",
+   "lat": -85.42,
+   "lon": 32.15,
+   "diameter_km": 1.4,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/16269"
+  },
+  {
+   "name": "Dawa",
+   "type": "Crater, craters",
+   "lat": -85.45,
+   "lon": 31.66,
+   "diameter_km": 0.65,
+   "link": "http://planetarynames.wr.usgs.gov/Feature/16270"
+  }
+ ]
+}

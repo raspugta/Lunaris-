@@ -1,0 +1,14 @@
+# Crater library. Positions/diameters come from the IAU/USGS Gazetteer (configs/gazetteer_south80.json);
+# windows are squares centred on the gazetteer centre, side = max(window_factor x diameter, 30 km).
+# Native resolution is chosen per window so a window stays <= ~2000 px: PGDA LOLA products exist at 20/40/80 m.
+window_factor: 1.5
+craters:
+  - {id: crater_shoemaker,  name: Shoemaker,   note: "Lunar Prospector impact site (1999); large PSR floor"}
+  - {id: crater_haworth,    name: Haworth,     note: "Large crater with an extensive PSR floor"}
+  - {id: crater_faustini,   name: Faustini,    note: "Large crater with an extensive PSR floor"}
+  - {id: crater_degerlache, name: de Gerlache, note: "Linked to Shackleton by the Shackleton–de Gerlache ridge"}
+  - {id: crater_sverdrup,   name: Sverdrup,    note: "PSR crater near the south pole"}
+  - {id: crater_slater,     name: Slater,      note: "Small PSR crater near the pole"}
+  - {id: crater_cabeus,     name: Cabeus,      note: "LCROSS impact site (2009); water detected in the ejecta plume"}
+  - {id: crater_nobile,     name: Nobile,      note: "Near Mons Mouton, the former VIPER landing region"}
+  - {id: crater_amundsen,   name: Amundsen,    note: "Large crater with PSR areas on its floor"}

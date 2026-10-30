@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LUNARIS — Lunar PSR Intelligence</title>
+<meta name="description" content="LUNARIS: Lunar Uncharted Navigation, Autonomy & Resource Intelligence System. Explainable exploration decisions for the Moon's permanently shadowed regions.">
+<link rel="stylesheet" href="/static/fonts.css">
+<link rel="stylesheet" href="/static/landing.css">
+<script type="importmap">{"imports": {"three": "/static/vendor/three.module.min.js"}}</script>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<canvas id="moon" aria-hidden="true"></canvas>
+
+<nav class="nav">
+  <a class="mark" href="#top"><span class="dot"></span>LUNARIS</a>
+  <div class="links">
+    <a href="#mission">Mission</a><a href="#capabilities">Capabilities</a><a href="#numbers">Evidence</a><a href="#data">Data</a>
+  </div>
+  <a class="cta small" href="/app">Launch console <span class="arrow">→</span></a>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-meta mono"><span>89.9°S</span><span>Shackleton · Lunar south pole</span><span>LRO · LOLA · Diviner · LROC</span></div>
+  <h1 class="title" aria-label="LUNARIS"><span>L</span><span>U</span><span>N</span><span>A</span><span>R</span><span>I</span><span>S</span></h1>
+  <p class="fullform">
+    <b>L</b>unar <b>U</b>ncharted <b>N</b>avigation, <b>A</b>utonomy &amp; <b>R</b>esource <b>I</b>ntelligence <b>S</b>ystem
+  </p>
+  <div class="hero-foot">
+    <p class="lede">Explainable exploration decisions for the Moon's permanently shadowed regions, built on real NASA data.</p>
+    <a class="cta" href="/app">Launch mission console <span class="arrow">→</span></a>
+  </div>
+  <div class="scroll-hint mono">scroll<span></span></div>
+</header>
+
+<section class="panel left" id="mission">
+  <p class="kicker mono">01 — The problem</p>
+  <h2 class="reveal">Where the sun<br><em>never rises.</em></h2>
+  <p class="body reveal">Near the lunar poles, crater floors have not seen direct sunlight for billions of years. These permanently shadowed regions
+    are among the coldest places in the solar system and may trap water ice. They are also dark, steep and poorly mapped, which makes them
+    very hard to drive into.</p>
+  <div class="facts reveal">
+    <div><span class="num">25.7%</span><span class="lab mono">of our Shackleton window is permanently shadowed</span></div>
+    <div><span class="num">64 K</span><span class="lab mono">coldest Diviner annual-max temperature in the window</span></div>
+  </div>
+</section>
+
+<section class="panel right" id="approach">
+  <p class="kicker mono">02 — The approach</p>
+  <h2 class="reveal">Inspect. Understand.<br>Prioritise. <em>Navigate.</em></h2>
+  <p class="body reveal">LUNARIS fuses laser altimetry, thermal models, illumination maps and orbital imagery into layers you can trace back to their source.
+    Every layer is labelled <i>measured</i>, <i>derived</i>, <i>model estimate</i> or <i>illustrative</i>, and unknown terrain is never treated as safe.</p>
+</section>
+
+<section class="caps" id="capabilities">
+  <p class="kicker mono center">03 — Capabilities</p>
+  <h2 class="reveal center">Six instruments. <em>One console.</em></h2>
+  <div class="grid">
+    <article class="card"><span class="idx mono">A</span><h3>Provenance</h3><p>Checksums, CRS, units and missing-metadata flags for every NASA product ingested.</p></article>
+    <article class="card"><span class="idx mono">B</span><h3>Terrain</h3><p>Slope, roughness and hazard classes from 20 m LOLA elevation, checked against NASA's own slope map (r = 0.998).</p></article>
+    <article class="card"><span class="idx mono">C</span><h3>Ice priority</h3><p>Transparent evidence scoring from PSR, Diviner temperature and ice stability. Candidates, not claims.</p></article>
+    <article class="card"><span class="idx mono">D</span><h3>Navigation</h3><p>Admissible 8-neighbour A* over a documented cost surface, with rejected alternatives explained.</p></article>
+    <article class="card hot"><span class="idx mono">E</span><h3>Rover simulation</h3><p>VIPER and Perseverance-class rovers driven with Bekker–Wong terramechanics: slip, sinkage, tip-over, energy.</p></article>
+    <article class="card"><span class="idx mono">F</span><h3>Mission brief</h3><p>PDF and JSON exports with sources, assumptions, uncertainty and limitations.</p></article>
+  </div>
+</section>
+
+<section class="numbers" id="numbers">
+  <p class="kicker mono center">04 — Evidence, not adjectives</p>
+  <div class="stats">
+    <div class="stat"><span class="v" data-to="0.07" data-dec="2">0</span><span class="u">m</span><p>median difference, PDS vs PGDA LOLA DEM: zero-pixel registration shift</p></div>
+    <div class="stat"><span class="v" data-to="39.4" data-dec="1">0</span><span class="u">km</span><p>A* route around the Shackleton rim with 0 blocked cells crossed</p></div>
+    <div class="stat"><span class="v" data-to="0.84" data-dec="2">0</span><span class="u">r</span><p>Depth Anything V2 vs LOLA. It sees structure but is not topography (OOS skill −1.25)</p></div>
+    <div class="stat"><span class="v" data-to="70" data-dec="0">0</span><span class="u">tests</span><p>offline tests, including A* optimality against Dijkstra and closed-form terramechanics</p></div>
+  </div>
+</section>
+
+<section class="data" id="data">
+  <p class="kicker mono center">05 — Built on</p>
+  <div class="marquee"><div class="track mono">
+    <span>LRO · LOLA altimetry</span><span>PGDA 20 m polar DEM</span><span>LOLA PSR map</span><span>Diviner Polar Resource Product</span><span>LROC NAC imagery</span><span>Mazarico illumination model</span><span>NASA SVS CGI Moon Kit</span><span>NASA VIPER specifications</span><span>NASA 3D Resources · Perseverance</span>
+    <span>LRO · LOLA altimetry</span><span>PGDA 20 m polar DEM</span><span>LOLA PSR map</span><span>Diviner Polar Resource Product</span><span>LROC NAC imagery</span><span>Mazarico illumination model</span><span>NASA SVS CGI Moon Kit</span><span>NASA VIPER specifications</span><span>NASA 3D Resources · Perseverance</span>
+  </div></div>
+</section>
+
+<section class="final" id="launch">
+  <h2 class="reveal center">Enter the <em>shadow.</em></h2>
+  <a class="cta big" href="/app">Launch mission console <span class="arrow">→</span></a>
+  <p class="disclaimer mono">Decision support only · not a mission certification · not proof of water ice</p>
+  <p class="credit mono">Moon: NASA's Scientific Visualization Studio (CGI Moon Kit, LROC colour + LOLA elevation)</p>
+</section>
+
+<script src="/static/vendor/gsap/gsap.min.js"></script>
+<script src="/static/vendor/gsap/ScrollTrigger.min.js"></script>
+<script type="module" src="/static/landing.js"></script>
+</body>
+</html>
