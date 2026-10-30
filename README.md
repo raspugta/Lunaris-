@@ -8,12 +8,6 @@ It ingests real NASA data products (LRO LOLA elevation and PSR maps, LROC NAC im
 thermal-model products), builds terrain and hazard layers, ranks locations for *further
 investigation*, plans an explainable A* rover route, and exports a provenance-aware mission brief.
 
-> **Not a mission certification. Not proof of water ice.** Every layer is labelled
-> *measured*, *derived*, *model estimate*, *illustrative* or *synthetic*. Unknown data is
-> never treated as safe. Monocular depth is labelled *relative depth* unless calibrated.
-
-Demo narrative: **Inspect → Understand → Prioritise → Navigate → Report.**
-
 ---
 
 ## Quick start (Linux, Python 3.12+; tested on 3.14)
